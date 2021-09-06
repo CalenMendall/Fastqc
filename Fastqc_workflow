@@ -1,0 +1,40 @@
+#Connect to cluster
+ssh cmendall@123.456.78.91
+
+ls
+cd RNAseq
+
+#Downloading sequencing data
+
+wget https.210722_M03644_JPB73-MS-1.tar.gz
+
+tar -xzf 210722_M03644_JPB73-MS-1.tar.gz
+
+ls
+
+cd /slipstream/home/cmendall/RNAseq/210722_M03644_JPB73-MS-1/Alignment_1/20210722_223341/fastq
+
+#unzipping fastq files
+screen
+
+gunzip *fastq.gz
+
+#running fastqc 
+
+fastqc *fastq*
+
+pwd
+
+exit
+
+#moving fastqc files to computer and view in new session
+
+mkdir ~/Desktop/RNAseq/fastqc
+
+scp -r cmendall@123.456.78.91: /slipstream/home/cmendall/RNAseq/210722_M03644_JPB73-MS-1/Alignment_1/20210722_223341/fastq/*fastqc* /Users/calenmendall/Desktop/RNAseq/fastqc/
+
+ls
+
+cd fastqc
+
+#check sequencing data quality via fastqc html files
